@@ -10,6 +10,21 @@ module LtsvConverter
     end
   end
 
+  def self.to_hash(ltsv_str, delimiter=':', to_sym=true)
+    raise StandardError, 'Invalid format.' unless ltsv_str.is_a? String
+
+    hash = {}
+    ltsv_str.split("\t").each do |elm|
+      array = elm.split(delimiter)
+      if to_sym
+        hash[array[0].to_sym] = array[1]
+      else
+        hash[array[0]] = array[1]
+      end
+    end
+    hash
+  end
+
   private
 
     def self.hash_to_ltsv(hash)
