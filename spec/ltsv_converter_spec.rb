@@ -24,5 +24,13 @@ describe LtsvConverter do
       hash = LtsvConverter.to_hash(ltsv_str)
       expect(hash).to eq({title: title, body: body})
     end
+
+    it 'should be able to convert a ltsv string that has a delimiter in it to a hash object' do
+      title = 'test:title'
+      body  = 'test:body.'
+      ltsv_str = "title:#{title}\tbody:#{body}"
+      hash = LtsvConverter.to_hash(ltsv_str)
+      expect(hash).to eq({title: title, body: body})
+    end
   end
 end

@@ -15,11 +15,11 @@ module LtsvConverter
 
     hash = {}
     ltsv_str.split("\t").each do |elm|
-      array = elm.split(delimiter)
+      array = elm.partition(delimiter)
       if to_sym
-        hash[array[0].to_sym] = array[1]
+        hash[array[0].to_sym] = array[2]
       else
-        hash[array[0]] = array[1]
+        hash[array[0]] = array[2]
       end
     end
     hash
